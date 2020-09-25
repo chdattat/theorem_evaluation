@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <div class="col d-flex justify-content-between row-hl">
+    <div class="d-flex flex-row">
+      <div class="d-block d-lg-none">
+        <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon><span>Menu</span>
+        </button>
+      </div>
+      <div
+        class="d-none d-lg-block"
+        routerLink="/"
+        [ngStyle]="{ cursor: 'pointer' }"
+      >
+        <span>PersonalizeCV</span>
+      </div>
+    </div>
+    <div>
+      <ul class="navigation-items d-flex flex-row">
+        <li>
+          <a routerLink="/personalize/contact"
+            ><mat-icon class="person">person</mat-icon><span>Contact</span></a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</mat-toolbar>

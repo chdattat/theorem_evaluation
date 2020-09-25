@@ -1,0 +1,20 @@
+<ng-container *ngFor="let person of personDetails$ | async">
+  <mat-card class="person">
+    <mat-card-header>
+      <div mat-card-avatar class="mr-3">
+        <mat-icon class="icon">description</mat-icon>
+      </div>
+      <mat-card-title>{{ person.name }}</mat-card-title>
+      <mat-card-subtitle
+        ><strong>Role: </strong>: {{ person.role }}</mat-card-subtitle
+      >
+      <mat-card-subtitle>{{ person.description }}</mat-card-subtitle>
+      <mat-card-subtitle class="mt-4"
+        ><strong>Email: </strong>{{ person.email }}</mat-card-subtitle
+      >
+      <mat-card-subtitle
+        ><strong>Phone: </strong>{{ person.phone }}</mat-card-subtitle
+      >
+    </mat-card-header>
+  </mat-card>
+</ng-container>

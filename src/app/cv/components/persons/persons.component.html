@@ -1,0 +1,6 @@
+<h5 class="mb-4 ml-4">Available CV - {{ totalCV$ | async }}</h5>
+<div class="d-flex flex-row flex-wrap">
+  <ng-container *ngFor="let person of persons$ | async">
+    <app-person [person]="person"></app-person>
+  </ng-container>
+</div>
