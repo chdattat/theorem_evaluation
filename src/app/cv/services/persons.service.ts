@@ -1,18 +1,18 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs/internal/Observable";
-import { Person } from "../models/person";
-import { Contact } from "../models/contact";
-import { of } from "rxjs/internal/observable/of";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { Person } from '../models/person';
+import { Contact } from '../models/contact';
+import { of } from 'rxjs/internal/observable/of';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class PersonsService {
   private readonly personDetailsUrl =
-    "assets/persons-details/persons-details.json";
+    'assets/persons-details/persons-details.json';
 
-  private readonly cotactDetailsUrl = "services/rest/personalize/savecontact";
+  private readonly cotactDetailsUrl = 'services/rest/personalize/savecontact';
 
   constructor(private http: HttpClient) {}
 

@@ -3,24 +3,24 @@ import {
   ComponentFixture,
   TestBed,
   fakeAsync,
-} from "@angular/core/testing";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { ContactComponent } from "./contact.component";
-import { CoreModule } from "src/app/core/components/core.module";
-import { SharedModule } from "src/app/shared/shared.module";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { PersonsService } from "../../services/persons.service";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { of, throwError } from "rxjs";
+} from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ContactComponent } from './contact.component';
+import { CoreModule } from 'src/app/core/components/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { PersonsService } from '../../services/persons.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { of, throwError } from 'rxjs';
 
 const MatSnackBarStub = {
   openFromComponent: jasmine
-    .createSpy("openFromComponent")
-    .and.returnValue("opened"),
-  open: jasmine.createSpy("open").and.returnValue("opened"),
+    .createSpy('openFromComponent')
+    .and.returnValue('opened'),
+  open: jasmine.createSpy('open').and.returnValue('opened'),
 };
 
-describe("ContactComponent", () => {
+describe('ContactComponent', () => {
   let component: ContactComponent;
   let fixture: ComponentFixture<ContactComponent>;
   let personsService: PersonsService;
@@ -53,31 +53,31 @@ describe("ContactComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("Should save contact details by submitting the form", fakeAsync(() => {
+  it('Should save contact details by submitting the form', fakeAsync(() => {
     component.contactForm.setValue({
-      name: "test",
-      lname: "test",
-      email: "test@gmail.com",
+      name: 'test',
+      lname: 'test',
+      email: 'test@gmail.com',
       phone: 33525353255,
     });
-    spyOn(personsService, "saveContactDetails").and.returnValue(of(true));
+    spyOn(personsService, 'saveContactDetails').and.returnValue(of(true));
     component.submitContactForm();
     expect(personsService.saveContactDetails).toHaveBeenCalled();
     expect(matSnackBar.openFromComponent).toHaveBeenCalled();
   }));
 
-  it("Should throw error in case technical issue by submitting the form", fakeAsync(() => {
+  it('Should throw error in case technical issue by submitting the form', fakeAsync(() => {
     component.contactForm.setValue({
-      name: "test",
-      lname: "test",
-      email: "test@gmail.com",
+      name: 'test',
+      lname: 'test',
+      email: 'test@gmail.com',
       phone: 33525353255,
     });
-    spyOn(personsService, "saveContactDetails").and.returnValue(
+    spyOn(personsService, 'saveContactDetails').and.returnValue(
       throwError({ status: 500 })
     );
     component.submitContactForm();

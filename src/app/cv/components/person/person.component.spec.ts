@@ -1,18 +1,18 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PersonComponent } from "./person.component";
-import { CoreModule } from "src/app/core/components/core.module";
-import { RouterTestingModule } from "@angular/router/testing";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { Router } from "@angular/router";
+import { PersonComponent } from './person.component';
+import { CoreModule } from 'src/app/core/components/core.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Router } from '@angular/router';
 
 const routeStub = {
   navigate: jasmine
-    .createSpy("navigate")
-    .and.returnValue("/personalize/person-cv"),
+    .createSpy('navigate')
+    .and.returnValue('/personalize/person-cv'),
 };
 
-describe("PersonComponent", () => {
+describe('PersonComponent', () => {
   let component: PersonComponent;
   let fixture: ComponentFixture<PersonComponent>;
   let route: Router;
@@ -35,20 +35,20 @@ describe("PersonComponent", () => {
     route = TestBed.get(Router);
     component.person = {
       id: 1,
-      name: "test",
-      role: "test",
-      description: "nodesc",
-      email: "test@gmail.com",
+      name: 'test',
+      role: 'test',
+      description: 'nodesc',
+      email: 'test@gmail.com',
       phone: 34534545,
     };
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it("Should navigate", () => {
+  it('Should navigate', () => {
     component.viewPersonCv();
     expect(route.navigate).toHaveBeenCalled();
   });

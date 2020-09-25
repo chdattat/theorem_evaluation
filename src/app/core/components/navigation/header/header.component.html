@@ -2,14 +2,18 @@
   <div class="col d-flex justify-content-between row-hl">
     <div class="d-flex flex-row">
       <div class="d-block d-lg-none">
-        <button mat-icon-button (click)="onToggleSidenav()">
+        <button
+          mat-icon-button
+          (click)="onToggleSidenav()"
+          [ngStyle]="{ outline: 'none' }"
+        >
           <mat-icon>menu</mat-icon><span>Menu</span>
         </button>
       </div>
       <div
         class="d-none d-lg-block"
         routerLink="/"
-        [ngStyle]="{ cursor: 'pointer' }"
+        [ngStyle]="{ cursor: 'pointer', outline: 'none' }"
       >
         <span>PersonalizeCV</span>
       </div>

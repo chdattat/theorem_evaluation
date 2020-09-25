@@ -1,15 +1,19 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavListComponent } from "./sidenav-list.component";
-import { CoreModule } from "../../core.module";
+import { SidenavListComponent } from './sidenav-list.component';
+import { CoreModule } from '../../core.module';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs/internal/observable/of';
 
-describe("SidenavListComponent", () => {
+describe('SidenavListComponent', () => {
   let component: SidenavListComponent;
   let fixture: ComponentFixture<SidenavListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CoreModule],
+      imports: [CoreModule, RouterTestingModule.withRoutes([])],
+      providers: [{ provide: ActivatedRoute, useValue: {} }],
     }).compileComponents();
   }));
 
@@ -19,7 +23,7 @@ describe("SidenavListComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

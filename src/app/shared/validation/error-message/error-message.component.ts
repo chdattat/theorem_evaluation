@@ -1,17 +1,17 @@
-import { Component, Input, OnDestroy } from "@angular/core";
-import { FormControl, FormGroupDirective } from "@angular/forms";
-import { startWith } from "rxjs/internal/operators/startWith";
-import { map } from "rxjs/internal/operators/map";
-import { valdationErrors } from "../../../shared/validation/error-message/error-message";
-import { ErrorStateMatcher } from "@angular/material/core";
+import { Component, Input, OnDestroy } from '@angular/core';
+import { FormControl, FormGroupDirective } from '@angular/forms';
+import { startWith } from 'rxjs/internal/operators/startWith';
+import { map } from 'rxjs/internal/operators/map';
+import { valdationErrors } from '../../../shared/validation/error-message/error-message';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
-  selector: "app-error-message",
-  templateUrl: "./error-message.component.html",
-  styleUrls: ["./error-message.component.scss"],
+  selector: 'app-error-message',
+  templateUrl: './error-message.component.html',
+  styleUrls: ['./error-message.component.scss'],
 })
 export class ErrorMessageComponent implements OnDestroy {
-  private _ofFormControl: FormControl;
+  private formControl: FormControl;
   private statusChangesSubscription;
   errorMessages: string[];
 
@@ -21,12 +21,12 @@ export class ErrorMessageComponent implements OnDestroy {
   @Input()
   set ofFormControl(newFormControl: FormControl) {
     this.unsubscribeFromStatusChanges();
-    this._ofFormControl = newFormControl;
-    if (this._ofFormControl) {
-      this.statusChangesSubscription = this._ofFormControl.statusChanges
+    this.formControl = newFormControl;
+    if (this.formControl) {
+      this.statusChangesSubscription = this.formControl.statusChanges
         .pipe(
-          startWith(this._ofFormControl.status),
-          map((status) => (status === "INVALID" ? this.getErrors() : []))
+          startWith(this.formControl.status),
+          map((status) => (status === 'INVALID' ? this.getErrors() : []))
         )
         // we subscribe directly instead of using the async pipe as it subscribes (sometimes) too late and misses some status changes
         .subscribe((errorMessages) => (this.errorMessages = errorMessages));
@@ -37,13 +37,13 @@ export class ErrorMessageComponent implements OnDestroy {
 
   errorsShouldBeShown() {
     const form = this.ofForm || null;
-    return this.errorStateMatcher.isErrorState(this._ofFormControl, form);
+    return this.errorStateMatcher.isErrorState(this.formControl, form);
   }
 
   private getErrors(): string[] {
-    const errors = this._ofFormControl ? this._ofFormControl.errors : null;
+    const errors = this.formControl ? this.formControl.errors : null;
     if (errors) {
-      console.log("error ->", errors);
+      console.log('error ->', errors);
       return Object.keys(errors).map((errorCode) => valdationErrors[errorCode]);
     }
     return [];
